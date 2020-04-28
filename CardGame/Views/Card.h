@@ -10,7 +10,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface CardView : UIView
+@interface Card : UIButton
+
+@property (nonatomic, assign) BOOL isOpened;
+@property (nonatomic, assign) BOOL isMatched;
+@property (nonatomic, assign) NSUInteger ID;
+
+- (instancetype)initWithBackgroundColor:(UIColor *)color andEmoji:(NSString *)emoji andID:(NSUInteger)ID;
+
+- (void)revertCard;
+- (void)closeCard;
+- (void)openCard;
+- (void)hideCard;
 
 @end
 

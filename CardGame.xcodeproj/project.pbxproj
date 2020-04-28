@@ -8,27 +8,28 @@
 
 /* Begin PBXBuildFile section */
 		030D77122455EDB2000D6E5F /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D77112455EDB2000D6E5F /* AppDelegate.m */; };
-		030D77152455EDB2000D6E5F /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D77142455EDB2000D6E5F /* SceneDelegate.m */; };
-		030D77182455EDB2000D6E5F /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D77172455EDB2000D6E5F /* ViewController.m */; };
-		030D771B2455EDB2000D6E5F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 030D77192455EDB2000D6E5F /* Main.storyboard */; };
+		030D77182455EDB2000D6E5F /* IntroViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D77172455EDB2000D6E5F /* IntroViewController.m */; };
 		030D771D2455EDB5000D6E5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 030D771C2455EDB5000D6E5F /* Assets.xcassets */; };
 		030D77202455EDB5000D6E5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 030D771E2455EDB5000D6E5F /* LaunchScreen.storyboard */; };
 		030D77232455EDB5000D6E5F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D77222455EDB5000D6E5F /* main.m */; };
+		030D772D2455EE10000D6E5F /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D772C2455EE10000D6E5F /* Card.m */; };
+		030D773324561D93000D6E5F /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D773224561D93000D6E5F /* GameViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		030D770D2455EDB2000D6E5F /* CardGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CardGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		030D77102455EDB2000D6E5F /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		030D77112455EDB2000D6E5F /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		030D77132455EDB2000D6E5F /* SceneDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SceneDelegate.h; sourceTree = "<group>"; };
-		030D77142455EDB2000D6E5F /* SceneDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SceneDelegate.m; sourceTree = "<group>"; };
-		030D77162455EDB2000D6E5F /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		030D77172455EDB2000D6E5F /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		030D771A2455EDB2000D6E5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		030D77162455EDB2000D6E5F /* IntroViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroViewController.h; sourceTree = "<group>"; };
+		030D77172455EDB2000D6E5F /* IntroViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroViewController.m; sourceTree = "<group>"; };
 		030D771C2455EDB5000D6E5F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		030D771F2455EDB5000D6E5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		030D77212455EDB5000D6E5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		030D77222455EDB5000D6E5F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		030D772B2455EE10000D6E5F /* Card.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
+		030D772C2455EE10000D6E5F /* Card.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
+		030D773124561D93000D6E5F /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		030D773224561D93000D6E5F /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,19 +62,36 @@
 		030D770F2455EDB2000D6E5F /* CardGame */ = {
 			isa = PBXGroup;
 			children = (
-				030D77102455EDB2000D6E5F /* AppDelegate.h */,
-				030D77112455EDB2000D6E5F /* AppDelegate.m */,
-				030D77132455EDB2000D6E5F /* SceneDelegate.h */,
-				030D77142455EDB2000D6E5F /* SceneDelegate.m */,
-				030D77162455EDB2000D6E5F /* ViewController.h */,
-				030D77172455EDB2000D6E5F /* ViewController.m */,
-				030D77192455EDB2000D6E5F /* Main.storyboard */,
-				030D771C2455EDB5000D6E5F /* Assets.xcassets */,
-				030D771E2455EDB5000D6E5F /* LaunchScreen.storyboard */,
+				030D77162455EDB2000D6E5F /* IntroViewController.h */,
+				030D77172455EDB2000D6E5F /* IntroViewController.m */,
+				030D773124561D93000D6E5F /* GameViewController.h */,
+				030D773224561D93000D6E5F /* GameViewController.m */,
+				030D772A2455EDEC000D6E5F /* Views */,
+				030D77292455EDD3000D6E5F /* Support */,
 				030D77212455EDB5000D6E5F /* Info.plist */,
-				030D77222455EDB5000D6E5F /* main.m */,
 			);
 			path = CardGame;
+			sourceTree = "<group>";
+		};
+		030D77292455EDD3000D6E5F /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				030D77102455EDB2000D6E5F /* AppDelegate.h */,
+				030D77112455EDB2000D6E5F /* AppDelegate.m */,
+				030D771C2455EDB5000D6E5F /* Assets.xcassets */,
+				030D771E2455EDB5000D6E5F /* LaunchScreen.storyboard */,
+				030D77222455EDB5000D6E5F /* main.m */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		030D772A2455EDEC000D6E5F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				030D772B2455EE10000D6E5F /* Card.h */,
+				030D772C2455EE10000D6E5F /* Card.m */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,7 +153,6 @@
 			files = (
 				030D77202455EDB5000D6E5F /* LaunchScreen.storyboard in Resources */,
 				030D771D2455EDB5000D6E5F /* Assets.xcassets in Resources */,
-				030D771B2455EDB2000D6E5F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -146,24 +163,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				030D77182455EDB2000D6E5F /* ViewController.m in Sources */,
+				030D773324561D93000D6E5F /* GameViewController.m in Sources */,
+				030D77182455EDB2000D6E5F /* IntroViewController.m in Sources */,
 				030D77122455EDB2000D6E5F /* AppDelegate.m in Sources */,
+				030D772D2455EE10000D6E5F /* Card.m in Sources */,
 				030D77232455EDB5000D6E5F /* main.m in Sources */,
-				030D77152455EDB2000D6E5F /* SceneDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		030D77192455EDB2000D6E5F /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				030D771A2455EDB2000D6E5F /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		030D771E2455EDB5000D6E5F /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

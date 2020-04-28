@@ -12,6 +12,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface GameViewController : UIViewController
 
+@property (nonatomic, assign) int numberOfCards;
+
 @end
 
 NS_ASSUME_NONNULL_END
