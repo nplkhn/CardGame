@@ -7,8 +7,11 @@
 //
 
 #import "ViewController.h"
+#import "CardView.h"
 
 @interface ViewController ()
+
+@property (nonatomic, strong) NSArray<CardView *> *cards;
 
 @end
 
@@ -17,6 +20,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [self setupCards];
+}
+
+- (void)setupCards {
+    
 }
 
 
