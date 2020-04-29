@@ -103,7 +103,7 @@
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     NSArray *arrayOfNumber = @[@"0", @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9"];
     
-    if (([arrayOfNumber containsObject:string] && [NSString stringWithFormat:@"%@%@", textField.text, string].intValue <= 40) || [string isEqualToString:@""]) {
+    if (([arrayOfNumber containsObject:string] && [NSString stringWithFormat:@"%@%@", textField.text, string].intValue <= 10) || [string isEqualToString:@""]) {
         return YES;
     }
     return NO;

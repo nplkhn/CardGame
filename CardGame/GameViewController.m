@@ -6,7 +6,7 @@
 //  Copyright © 2020 Никита Плахин. All rights reserved.
 //
 
-
+// TODO: исправить баг с карточками(при выборе двух разных карточек и последующем выборе правильной карточки 2 раза пропадают карточки нужные), сделать чтобы карточки не пропадли сразу
 
 #import "GameViewController.h"
 #import "Card.h"
@@ -37,6 +37,7 @@
     
     NSMutableArray<UIStackView *> *stackViewsArray = [NSMutableArray new];
     
+    // MARK: filling stack view array with stack views
     NSMutableArray<Card *> *cards = [NSMutableArray new];
     for (Card *card in self.cards) {
         [cards addObject:card];
@@ -46,34 +47,27 @@
         }
     }
 
+    // MARK: setup container stack view
     UIStackView *containerStackView = [UIStackView new];
     containerStackView.axis = UILayoutConstraintAxisVertical;
     containerStackView.alignment = UIStackViewAlignmentFill;
-    containerStackView.distribution = UIStackViewDistributionEqualSpacing;
-    containerStackView.spacing = 30.0;
+    containerStackView.distribution = UIStackViewDistributionFillEqually;
+    containerStackView.spacing = 10.0;
     
     containerStackView.translatesAutoresizingMaskIntoConstraints = NO;
     
     [self.view addSubview:containerStackView];
     
     [NSLayoutConstraint activateConstraints:@[
-        [containerStackView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:10.0],
-        [containerStackView.topAnchor constraintEqualToAnchor:self.view.topAnchor constant:100.0],
-        [containerStackView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-10.0],
-        [containerStackView.heightAnchor constraintEqualToConstant:110.0 * stackViewsArray.count + 30.0 * (stackViewsArray.count - 1)]
+        [containerStackView.leadingAnchor constraintEqualToAnchor:self.view.leadingAnchor constant:16.0],
+        [containerStackView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor constant:16.0],
+        [containerStackView.trailingAnchor constraintEqualToAnchor:self.view.trailingAnchor constant:-16.0],
+        [containerStackView.heightAnchor constraintEqualToConstant:125.0*stackViewsArray.count]
     ]];
     
     
     for (UIStackView *stackView in stackViewsArray) {
-        stackView.translatesAutoresizingMaskIntoConstraints = NO;
-        
         [containerStackView addArrangedSubview:stackView];
-        
-        [NSLayoutConstraint activateConstraints:@[
-            [stackView.leadingAnchor constraintEqualToAnchor:containerStackView.leadingAnchor],
-            [stackView.trailingAnchor constraintEqualToAnchor:containerStackView.trailingAnchor],
-            [stackView.heightAnchor constraintEqualToConstant:110.0]
-        ]];
     }
     
 
@@ -98,6 +92,25 @@
         
         [cards addObjectsFromArray:@[card1, card2]];
     }
+    
+    // MARK: Card size constraints
+//
+//    for (Card *card in cards) {
+//        card.translatesAutoresizingMaskIntoConstraints = NO;
+//        [NSLayoutConstraint activateConstraints:@[
+//            [card.heightAnchor constraintEqualToConstant:100.0],
+//            [card.widthAnchor constraintEqualToConstant:80.0]
+//        ]];
+//    }
+    
+    // MARK: Shuffling the cards:
+    NSUInteger count = cards.count;
+    for (NSUInteger i = 0; i < count; ++i) {
+        NSUInteger nElements = count - i;
+        NSUInteger n = (arc4random() % nElements) + i;
+        [cards exchangeObjectAtIndex:i withObjectAtIndex:n];
+    }
+    
     self.cards = cards;
 }
 
@@ -105,17 +118,12 @@
     UIStackView *stackView = [UIStackView new];
     
     stackView.axis = UILayoutConstraintAxisHorizontal;
-    stackView.distribution = UIStackViewDistributionEqualSpacing;
+    stackView.distribution = UIStackViewDistributionFillEqually;
+    stackView.alignment = UIStackViewAlignmentFill;
     stackView.spacing = 10.0;
     
     for (Card *card in cards) {
-        card.translatesAutoresizingMaskIntoConstraints = NO;
         [stackView addArrangedSubview:card];
-        
-        [NSLayoutConstraint activateConstraints:@[
-            [card.widthAnchor constraintEqualToConstant:75.0],
-            [card.heightAnchor constraintEqualToConstant:110.0]
-        ]];
     }
     
     return stackView;
@@ -123,6 +131,8 @@
 
 #pragma mark - handlers
 
+
+// TODO: rewrite this method – works incorrectly
 - (void)cardTapped:(Card *)obj {
     if (obj.isOpened) {
         self.numberOfTapped--;
@@ -130,19 +140,41 @@
         self.numberOfTapped++;
     }
     [obj revertCard];
-    
     if (self.numberOfTapped == 1) {
         self.matchID = obj.ID;
-    } else if (self.numberOfTapped == 2 && self.matchID == obj.ID) {
-        self.numberOfTapped = 0;
-//        [obj revertCard];
-//        sleep(1);
-        [self closeCardWithId:self.matchID andWithId:obj.ID];
-    } else if (self.numberOfTapped == 3) {
-        [self closeAllCards];
-        self.numberOfTapped = 1;
-        self.matchID = obj.ID;
+    } else if (self.numberOfTapped == 2) {
+        if (self.matchID == obj.ID) {
+            [self performSelector:@selector(hideCardWithId:andWithId:) withObject:nil afterDelay:0.6];
+//            [NSThread sleepForTimeInterval:0.6];
+            [self hideCardWithId:self.matchID andWithId:obj.ID];
+            self.numberOfTapped = 0;
+        } else {
+//            [NSThread sleepForTimeInterval:0.6];
+            [self closeAllCards];
+            self.numberOfTapped = 0;
+        }
     }
+    
+    
+//    if (obj.isOpened) {
+//        self.numberOfTapped--;
+//    } else {
+//        self.numberOfTapped++;
+//    }
+//    [obj revertCard];
+//
+//    if (self.numberOfTapped == 1) {
+//        self.matchID = obj.ID;
+//    } else if (self.numberOfTapped == 2 && self.matchID == obj.ID) {
+//        self.numberOfTapped = 0;
+////        [obj revertCard];
+////        sleep(1);
+//        [self closeCardWithId:self.matchID andWithId:obj.ID];
+//    } else if (self.numberOfTapped == 3) {
+//        [self closeAllCards];
+//        self.numberOfTapped = 1;
+//        self.matchID = obj.ID;
+//    }
     
 }
 
@@ -152,7 +184,7 @@
     }
 }
 
-- (void)closeCardWithId:(NSUInteger)id1 andWithId:(NSUInteger)id2 {
+- (void)hideCardWithId:(NSUInteger)id1 andWithId:(NSUInteger)id2 {
     for (Card *card in self.cards) {
         if (card.ID == id1 || card.ID == id2) {
             [card hideCard];

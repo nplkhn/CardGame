@@ -14,6 +14,7 @@
 		030D77232455EDB5000D6E5F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D77222455EDB5000D6E5F /* main.m */; };
 		030D772D2455EE10000D6E5F /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D772C2455EE10000D6E5F /* Card.m */; };
 		030D773324561D93000D6E5F /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 030D773224561D93000D6E5F /* GameViewController.m */; };
+		033E87F024598DD10087A79D /* Game.m in Sources */ = {isa = PBXBuildFile; fileRef = 033E87EF24598DD10087A79D /* Game.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,8 @@
 		030D772C2455EE10000D6E5F /* Card.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
 		030D773124561D93000D6E5F /* GameViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		030D773224561D93000D6E5F /* GameViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		033E87EE24598DD10087A79D /* Game.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Game.h; sourceTree = "<group>"; };
+		033E87EF24598DD10087A79D /* Game.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Game.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +69,7 @@
 				030D77172455EDB2000D6E5F /* IntroViewController.m */,
 				030D773124561D93000D6E5F /* GameViewController.h */,
 				030D773224561D93000D6E5F /* GameViewController.m */,
+				033E87ED24598DBE0087A79D /* Model */,
 				030D772A2455EDEC000D6E5F /* Views */,
 				030D77292455EDD3000D6E5F /* Support */,
 				030D77212455EDB5000D6E5F /* Info.plist */,
@@ -92,6 +96,15 @@
 				030D772C2455EE10000D6E5F /* Card.m */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		033E87ED24598DBE0087A79D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				033E87EE24598DD10087A79D /* Game.h */,
+				033E87EF24598DD10087A79D /* Game.m */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -166,6 +179,7 @@
 				030D773324561D93000D6E5F /* GameViewController.m in Sources */,
 				030D77182455EDB2000D6E5F /* IntroViewController.m in Sources */,
 				030D77122455EDB2000D6E5F /* AppDelegate.m in Sources */,
+				033E87F024598DD10087A79D /* Game.m in Sources */,
 				030D772D2455EE10000D6E5F /* Card.m in Sources */,
 				030D77232455EDB5000D6E5F /* main.m in Sources */,
 			);
