@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "IntroViewController.h"
+#import "CustromNavigationViewController.h"
 
 @interface AppDelegate ()
 
@@ -23,10 +24,12 @@
 //    introVC.view.frame = UIScreen.mainScreen.bounds;
     UINavigationController *navVC = [[UINavigationController alloc] initWithRootViewController:introVC];
     
-    navVC.navigationBar.translucent = YES;
+    
     
     [self.window setRootViewController:navVC];
     
+    
+//    CustromNavigationViewController *navVC = [[CustromNavigationViewController alloc] initWithRootViewController:introVC];
     
     [self.window makeKeyAndVisible];
     return YES;

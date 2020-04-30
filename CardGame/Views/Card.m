@@ -8,11 +8,6 @@
 
 #import "Card.h"
 
-@interface Card()
-
-@property (nonatomic, strong) UILabel *emoji;
-
-@end
 
 @implementation Card
 
@@ -23,44 +18,31 @@
         _ID = ID;
         _isMatched = NO;
         _isOpened = NO;
-        _emoji = [UILabel new];
-        _emoji.text = emoji;
-        _emoji.layer.opacity = 0;
+        [self setTitle:emoji forState:UIControlStateNormal];
         self.backgroundColor = color;
-        [self setupViews];
+        [self setupView];
     }
     return self;
 }
 
-- (void)setupViews {
-    self.emoji.translatesAutoresizingMaskIntoConstraints = NO;
-    [self addSubview:self.emoji];
-    
-    self.emoji.font = [UIFont systemFontOfSize:40.0];
-    
-    [NSLayoutConstraint activateConstraints:@[
-        [self.emoji.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
-        [self.emoji.centerYAnchor constraintEqualToAnchor:self.centerYAnchor]
-    ]];
-    
-//    [self addTarget:nil action:@selector(revertCard:) forControlEvents:UIControlEventValueChanged];
+- (void)setupView {
+    self.titleLabel.layer.opacity = 0;
+    self.titleLabel.font = [UIFont systemFontOfSize:50.0];
+    self.titleLabel.text = @"Button";
+    self.titleLabel.textColor = UIColor.blackColor;
 }
 
 - (void)revertCard {
-    if (self.emoji.layer.opacity) {
-        [self closeCard];
-    } else {
-        [self openCard];
-    }
+    self.titleLabel.layer.opacity ? [self closeCard] : [self openCard];
 }
 
 - (void)openCard {
-    self.emoji.layer.opacity = 1;
+    self.titleLabel.layer.opacity = 1;
     self.isOpened = YES;
 }
 
 - (void)closeCard {
-    self.emoji.layer.opacity = 0;
+    self.titleLabel.layer.opacity = 0;
     self.isOpened = NO;
 }
 

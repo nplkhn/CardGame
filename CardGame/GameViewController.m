@@ -6,7 +6,7 @@
 //  Copyright © 2020 Никита Плахин. All rights reserved.
 //
 
-// TODO: исправить баг с карточками(при выборе двух разных карточек и последующем выборе правильной карточки 2 раза пропадают карточки нужные), сделать чтобы карточки не пропадли сразу
+// TODO: сделать задержку перед скрытием карточек
 
 #import "GameViewController.h"
 #import "Card.h"
@@ -14,6 +14,7 @@
 @interface GameViewController ()
 
 @property (nonatomic, strong) NSArray<Card *> *cards;
+@property (nonatomic, strong) Card *choosedCard;
 @property (nonatomic, strong) UIStackView *containerStackView;
 @property (nonatomic, assign) int numberOfTapped;
 @property (nonatomic, assign) NSUInteger matchID;
@@ -24,22 +25,24 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
     self.view.backgroundColor = UIColor.systemIndigoColor;
+    [self setupNavigationBar];
     [self setupCards];
 }
 
-#pragma mark - Setup cards
+#pragma mark - Setup views
 
 - (void)setupCards {
     [self initCards];
     
     NSMutableArray<UIStackView *> *stackViewsArray = [NSMutableArray new];
     
-    // MARK: filling stack view array with stack views
+    // MARK: add target-action to card, filling stack view array with stack views
     NSMutableArray<Card *> *cards = [NSMutableArray new];
     for (Card *card in self.cards) {
+        [card addTarget:self
+                  action:@selector(cardTapped:)
+        forControlEvents:UIControlEventTouchUpInside];
         [cards addObject:card];
         if (cards.count == 4 || [self.cards indexOfObject:card] == self.cards.count - 1) {
             [stackViewsArray addObject:[self addStackViewWithCards:cards]];
@@ -69,14 +72,6 @@
     for (UIStackView *stackView in stackViewsArray) {
         [containerStackView addArrangedSubview:stackView];
     }
-    
-
-    
-    for (Card *card in self.cards) {
-        [card addTarget:self
-                 action:@selector(cardTapped:)
-       forControlEvents:UIControlEventTouchUpInside];
-    }
 }
 
 - (void)initCards {
@@ -92,16 +87,6 @@
         
         [cards addObjectsFromArray:@[card1, card2]];
     }
-    
-    // MARK: Card size constraints
-//
-//    for (Card *card in cards) {
-//        card.translatesAutoresizingMaskIntoConstraints = NO;
-//        [NSLayoutConstraint activateConstraints:@[
-//            [card.heightAnchor constraintEqualToConstant:100.0],
-//            [card.widthAnchor constraintEqualToConstant:80.0]
-//        ]];
-//    }
     
     // MARK: Shuffling the cards:
     NSUInteger count = cards.count;
@@ -129,10 +114,14 @@
     return stackView;
 }
 
+- (void)setupNavigationBar {
+    [self.navigationController setNavigationBarHidden:NO];
+    self.navigationController.navigationBar.alpha = 0.25;
+    self.navigationController.navigationBar.tintColor = UIColor.blackColor;
+}
+
 #pragma mark - handlers
 
-
-// TODO: rewrite this method – works incorrectly
 - (void)cardTapped:(Card *)obj {
     if (obj.isOpened) {
         self.numberOfTapped--;
@@ -140,43 +129,9 @@
         self.numberOfTapped++;
     }
     [obj revertCard];
-    if (self.numberOfTapped == 1) {
-        self.matchID = obj.ID;
-    } else if (self.numberOfTapped == 2) {
-        if (self.matchID == obj.ID) {
-            [self performSelector:@selector(hideCardWithId:andWithId:) withObject:nil afterDelay:0.6];
-//            [NSThread sleepForTimeInterval:0.6];
-            [self hideCardWithId:self.matchID andWithId:obj.ID];
-            self.numberOfTapped = 0;
-        } else {
-//            [NSThread sleepForTimeInterval:0.6];
-            [self closeAllCards];
-            self.numberOfTapped = 0;
-        }
-    }
-    
-    
-//    if (obj.isOpened) {
-//        self.numberOfTapped--;
-//    } else {
-//        self.numberOfTapped++;
-//    }
-//    [obj revertCard];
-//
-//    if (self.numberOfTapped == 1) {
-//        self.matchID = obj.ID;
-//    } else if (self.numberOfTapped == 2 && self.matchID == obj.ID) {
-//        self.numberOfTapped = 0;
-////        [obj revertCard];
-////        sleep(1);
-//        [self closeCardWithId:self.matchID andWithId:obj.ID];
-//    } else if (self.numberOfTapped == 3) {
-//        [self closeAllCards];
-//        self.numberOfTapped = 1;
-//        self.matchID = obj.ID;
-//    }
-    
 }
+
+#pragma mark - helpers
 
 - (void)closeAllCards {
     for (Card *card in self.cards) {
@@ -191,7 +146,6 @@
         }
     }
 }
-
 
 /*
 #pragma mark - Navigation

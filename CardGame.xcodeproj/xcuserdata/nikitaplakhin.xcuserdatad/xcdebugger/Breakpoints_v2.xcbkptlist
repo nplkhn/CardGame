@@ -14,8 +14,8 @@
             filePath = "CardGame/IntroViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "-setupView"
             landmarkType = "7">
          </BreakpointContent>
@@ -30,8 +30,8 @@
             filePath = "CardGame/IntroViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "54"
-            endingLineNumber = "54"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
             landmarkName = "-setupView"
             landmarkType = "7">
          </BreakpointContent>
@@ -46,10 +46,10 @@
             filePath = "CardGame/GameViewController.m"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "136"
-            endingLineNumber = "136"
-            landmarkName = "-cardTapped:"
-            landmarkType = "7">
+            startingLineNumber = "125"
+            endingLineNumber = "125"
+            landmarkName = "GameViewController"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

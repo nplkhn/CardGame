@@ -24,16 +24,25 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     [self setupView];
+    
     [self.buttonSubmit addTarget:self
                            action:@selector(handleButtonTap)
                  forControlEvents:UIControlEventTouchUpInside];
     
+    [self hiddenThenTappedAround];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.navigationController setNavigationBarHidden:YES];
 }
 
 
 #pragma mark - setupView
 
 - (void)setupView {
+    [self.navigationController setNavigationBarHidden:YES];
+    
     self.view.layer.backgroundColor = UIColor.systemBackgroundColor.CGColor;
     
     self.labelChoose = [UILabel new];
@@ -52,7 +61,6 @@
     self.textFieldChoose.layer.borderColor = UIColor.grayColor.CGColor;
     self.textFieldChoose.layer.borderWidth = 1.0;
     self.textFieldChoose.layer.cornerRadius = 10.0;
-//    self.textFieldChoose.keyboardType = UIKeyboardTypePhonePad;
     self.textFieldChoose.layer.sublayerTransform = CATransform3DMakeTranslation(5, 0, 0);
     
     self.textFieldChoose.delegate = self;
@@ -79,10 +87,16 @@
     ]];
 }
 
+- (void)hiddenThenTappedAround {
+    UITapGestureRecognizer *gesture = [[UITapGestureRecognizer alloc] initWithTarget:self
+                                                                              action:@selector(hide)];
+    [self.view addGestureRecognizer:gesture];
+}
+
 #pragma mark - Handlers
 
 - (void)handleButtonTap {
-    NSLog(@"Transition to gameVC");
+//    NSLog(@"Transition to gameVC");
     if (![self.textFieldChoose.text isEqualToString:@""]) {
         GameViewController *gameVC = [GameViewController new];
         gameVC.numberOfCards = self.textFieldChoose.text.intValue;
@@ -93,9 +107,13 @@
     
 }
 
+- (void)hide {
+    [self.view endEditing:YES];
+}
+
 #pragma mark - delegate methods
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [self.view endEditing:YES];
+    [self hide];
     [self handleButtonTap];
     return NO;
 }
