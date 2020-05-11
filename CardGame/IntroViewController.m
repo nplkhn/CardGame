@@ -32,9 +32,11 @@
     [self hiddenThenTappedAround];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self.navigationController setNavigationBarHidden:YES];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.navigationController setNavigationBarHidden:YES];
+    }];
 }
 
 
@@ -42,7 +44,7 @@
 
 - (void)setupView {
     [self.navigationController setNavigationBarHidden:YES];
-    
+//    self.view.layer.backgroundColor = UIColor.systemIndigoColor.CGColor;
     self.view.layer.backgroundColor = UIColor.systemBackgroundColor.CGColor;
     
     self.labelChoose = [UILabel new];

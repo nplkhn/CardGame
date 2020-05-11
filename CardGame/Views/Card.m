@@ -29,11 +29,18 @@
     self.titleLabel.layer.opacity = 0;
     self.titleLabel.font = [UIFont systemFontOfSize:50.0];
     self.titleLabel.text = @"Button";
-    self.titleLabel.textColor = UIColor.blackColor;
 }
 
 - (void)revertCard {
-    self.titleLabel.layer.opacity ? [self closeCard] : [self openCard];
+    [UIView animateWithDuration:0.5 animations:^{
+        self.titleLabel.layer.opacity ? [self closeCard] : [self openCard];
+        if (self.layer.backgroundColor == UIColor.systemOrangeColor.CGColor) {
+            self.layer.backgroundColor = UIColor.whiteColor.CGColor;
+        } else {
+            self.layer.backgroundColor = UIColor.systemOrangeColor.CGColor;
+        }
+    }];
+    
 }
 
 - (void)openCard {

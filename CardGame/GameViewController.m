@@ -115,9 +115,12 @@
 }
 
 - (void)setupNavigationBar {
-    [self.navigationController setNavigationBarHidden:NO];
-    self.navigationController.navigationBar.alpha = 0.25;
-    self.navigationController.navigationBar.tintColor = UIColor.blackColor;
+    [UIView animateWithDuration:0.3 animations:^{
+        [self.navigationController setNavigationBarHidden:NO];
+        self.navigationController.navigationBar.alpha = 0.25;
+        self.navigationController.navigationBar.tintColor = UIColor.blackColor;
+    }];
+
 }
 
 #pragma mark - handlers
