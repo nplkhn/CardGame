@@ -44,7 +44,7 @@
 
 - (void)setupView {
     [self.navigationController setNavigationBarHidden:YES];
-//    self.view.layer.backgroundColor = UIColor.systemIndigoColor.CGColor;
+    
     self.view.layer.backgroundColor = UIColor.systemBackgroundColor.CGColor;
     
     self.labelChoose = [UILabel new];

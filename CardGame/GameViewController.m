@@ -132,6 +132,23 @@
         self.numberOfTapped++;
     }
     [obj revertCard];
+    
+    if (self.numberOfTapped == 1) {
+        self.matchID = obj.ID;
+    } else if (self.numberOfTapped == 2 && self.matchID == obj.ID) {
+        [UIView animateWithDuration:0.5 animations:^{
+            [self hideCardWithId:self.matchID andWithId:obj.ID];
+        }];
+        self.matchID = 0;
+        self.numberOfTapped = 0;
+    } else {
+        [UIView animateWithDuration:0.5 animations:^{
+            [self closeAllCards];
+        }];
+        self.matchID = 0;
+        self.numberOfTapped = 0;
+    }
+    
 }
 
 #pragma mark - helpers

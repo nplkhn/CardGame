@@ -32,29 +32,30 @@
 }
 
 - (void)revertCard {
-    [UIView animateWithDuration:0.5 animations:^{
-        self.titleLabel.layer.opacity ? [self closeCard] : [self openCard];
-        if (self.layer.backgroundColor == UIColor.systemOrangeColor.CGColor) {
-            self.layer.backgroundColor = UIColor.whiteColor.CGColor;
-        } else {
-            self.layer.backgroundColor = UIColor.systemOrangeColor.CGColor;
-        }
-    }];
-    
+    self.titleLabel.layer.opacity ? [self closeCard] : [self openCard];
 }
 
 - (void)openCard {
-    self.titleLabel.layer.opacity = 1;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.titleLabel.layer.opacity = 1;
+        self.layer.backgroundColor = UIColor.whiteColor.CGColor;
+    }];
     self.isOpened = YES;
 }
 
 - (void)closeCard {
-    self.titleLabel.layer.opacity = 0;
+    [UIView animateWithDuration:0.5 delay:0.5 options:0 animations:^{
+        self.titleLabel.layer.opacity = 0;
+        self.layer.backgroundColor = UIColor.systemOrangeColor.CGColor;
+    } completion:nil];
+
     self.isOpened = NO;
 }
 
 - (void)hideCard {
-    self.layer.opacity = 0;
+    [UIView animateWithDuration:0.5 delay:0.5 options:0 animations:^{
+        self.layer.opacity = 0;
+    } completion:nil];
     self.isMatched = YES;
 }
 
